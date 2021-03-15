@@ -6,17 +6,17 @@ require('dotenv/config');
 
 const port = process.env.PORT || 3000
 
-/*const outfitDataRoutes = require('./routes/outfitData');
-const imageRoutes = require('./routes/image');
-const pieceRoutes = require('./routes/piece');*/
+const airhumidityRoutes = require('./routes/airhumidity');
+const soilhumidityRoutes = require('./routes/soilhumidity');
+const temperatureRoutes = require('./routes/temperature');
 const plantRoutes = require('./routes/plant')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-/*app.use('/outfit', outfitDataRoutes);
-app.use('/image', imageRoutes);
-app.use('/piece', pieceRoutes);*/
+app.use('/airhumidity', airhumidityRoutes);
+app.use('/soilhumidity', soilhumidityRoutes);
+app.use('/temperature', temperatureRoutes);
 app.use('/plant', plantRoutes);
 
 app.get('/', (req, res) => {
