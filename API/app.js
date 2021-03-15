@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const app = express();
 require('dotenv/config');
 
@@ -20,7 +21,7 @@ app.use('/temperature', temperatureRoutes);
 app.use('/plant', plantRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Outfitapp API');
+    res.sendFile(path.join(__dirname, './index.html'));
 })
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {

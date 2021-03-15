@@ -40,7 +40,7 @@ router.get('/id/:humidityId', async (req, res) => {
     }
 })
 
-//Find humidity data by plantid
+//Get humidity data by plantid
 router.get('/plantid/:plantId', async (req, res) => {
     try {
         const humidities = await Airhumidity.find({ plantId: req.params.plantId });
