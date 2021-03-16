@@ -53,8 +53,18 @@ router.get('/plantid/:plantId', async (req, res) => {
 //Delete humidity by id
 router.delete('/id/:humidityId', async (req, res) => {
     try {
-        const removedHumidity = Airhumidity.deleteOne({ _id: req.params.humidityId });
+        const removedHumidity = await Airhumidity.deleteOne({ _id: req.params.humidityId });
         return res.status(200).json(removedHumidity);
+    } catch (err) {
+        res.json(err);
+    }
+})
+
+//Delete humidity by plantId
+router.delete('/plantid/:plantId', async (req, res) => {
+    try {
+        const removedAirhumiity = await Airhumidity.deleteMany({plantId: req.params.plantId});
+        return res.status(200).json(removedAirhumiity);
     } catch (err) {
         res.json(err);
     }

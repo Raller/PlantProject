@@ -59,7 +59,7 @@ router.get('/name/:name', async (req, res) => {
 //Delete plant by id
 router.delete('/id/:plantId', async (req, res) => {
     try {
-        const removedPlant = Plant.deleteOne({ _id: req.params.plantId });
+        const removedPlant = await Plant.deleteOne({ _id: req.params.plantId });
         return res.status(200).json(removedPlant);
     } catch (err) {
         res.json(err);
@@ -69,7 +69,7 @@ router.delete('/id/:plantId', async (req, res) => {
 //Delete plant by name
 router.delete('/name/:name', async (req, res) => {
     try {
-        const removedPlant = Plant.deleteOne({ name: req.params.name });
+        const removedPlant = await Plant.deleteOne({ name: req.params.name });
         return res.status(200).json(removedPlant);
     } catch (err) {
         res.json(err);

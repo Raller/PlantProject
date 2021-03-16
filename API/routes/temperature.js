@@ -1,4 +1,5 @@
 const express = require('express');
+const { remove } = require('../models/Temperature');
 const Temperature = require('../models/Temperature');
 
 const router = express.Router();
@@ -53,12 +54,23 @@ router.get('/plantid/:plantId', async (req, res) => {
 //Delete temperature by id
 router.delete('/id/:tempId', async (req, res) => {
     try {
-        const removedTemperature = Temperature.deleteOne({ _id: req.params.tempId });
+        const removedTemperature = await Temperature.deleteOne({ _id: req.params.tempId });
         return res.status(200).json(removedTemperature);
     } catch (err) {
         res.json(err);
     }
 })
+
+//Delete temperatures by plantId
+router.delete('/plantid/:plantId', async (req, res) => {
+    try {
+        const removedTemperatures = await Temperature.deleteMany({plantId: req.params.plantId});
+        return res.status(200).json(removedTemperatures);
+    } catch (err) {
+        res.json(err);
+    }
+})
+
 
 //Update plant by id
 /*router.put('/id/:tempId', async (req, res) => {

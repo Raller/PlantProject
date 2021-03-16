@@ -11,6 +11,8 @@ const airhumidityRoutes = require('./routes/airhumidity');
 const soilhumidityRoutes = require('./routes/soilhumidity');
 const temperatureRoutes = require('./routes/temperature');
 const plantRoutes = require('./routes/plant')
+const errorRoutes = require('./routes/error')
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,6 +21,8 @@ app.use('/airhumidity', airhumidityRoutes);
 app.use('/soilhumidity', soilhumidityRoutes);
 app.use('/temperature', temperatureRoutes);
 app.use('/plant', plantRoutes);
+app.use('/error', errorRoutes);
+
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './index.html'));
