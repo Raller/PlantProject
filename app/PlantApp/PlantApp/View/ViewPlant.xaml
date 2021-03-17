@@ -53,5 +53,7 @@
             </ListView.ItemTemplate>
 
         </ListView>
+        <Button Text="Ny plante" 
+                Command="{Binding NewPlantCommand}"/>
     </StackLayout>
 </ContentPage>

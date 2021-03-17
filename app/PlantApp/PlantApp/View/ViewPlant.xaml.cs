@@ -24,7 +24,7 @@ namespace PlantApp.View
         {
 
             InitializeComponent();
-
+            BindingContext = new PlantController(Navigation);
             PlantList.ItemsSource = ctr.GenerateCustomerListAsync();
 
         }
@@ -35,43 +35,43 @@ namespace PlantApp.View
             var tappedItem = e.SelectedItem;
             PlantGrid.IsVisible = true;
             PlantList.IsVisible = false;
-            Console.WriteLine("Dette er imageUrl: " + ((Plant)tappedItem).imageUrl);
-            if ((((Plant) tappedItem).imageUrl) != null)
+            Console.WriteLine("Dette er imageUrl: " + ((Plant)tappedItem).ImageUrl);
+            if ((((Plant) tappedItem).ImageUrl) != null)
             {
                 
-                PlantPicture.Source = (((Plant)tappedItem).imageUrl);
+                PlantPicture.Source = (((Plant)tappedItem).ImageUrl);
             } 
 
 
            
-            plantName.Text = "Navn: " + (((Plant) tappedItem).name);
-            plantId.Text = "ID: " +(((Plant)tappedItem).id);
-            plantType.Text = "Type: " + (((Plant)tappedItem).type);
+            plantName.Text = "Navn: " + (((Plant) tappedItem).Name);
+            plantId.Text = "ID: " +(((Plant)tappedItem).Id);
+            plantType.Text = "Type: " + (((Plant)tappedItem).Type);
             Console.WriteLine("Jeg er blevet klikket");
-            Console.WriteLine(((Plant)tappedItem).id);
+            Console.WriteLine(((Plant)tappedItem).Id);
             List<AirHumidity> airList = ctr.GetAirHumidity();
             
-            AirHumidity airhums = airList.FindLast(item => item.plantId.Equals(((Plant)tappedItem).id));
+            AirHumidity airhums = airList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
             Console.WriteLine("Dette er airhums: " + airhums );
             if (airhums != null)
             {
-                plantAirHum.Text = "Air Humidity: " + airhums.humidity;
+                plantAirHum.Text = "Air Humidity: " + airhums.Humidity;
             }
 
             List<Temperature> TempList = ctr.GetAirTemperature();
-            Temperature airTemp = TempList.FindLast(item => item.plantId.Equals(((Plant)tappedItem).id));
+            Temperature airTemp = TempList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
             Console.WriteLine("Dette er air Temperature: " + airTemp);
             if (airTemp != null)
             {
-                plantAirTemp.Text = "Air Temperature: " + airTemp.temp;
+                plantAirTemp.Text = "Air Temperature: " + airTemp.Temp;
             }
 
             List<SoilHumidity> soilHumList = ctr.GetSoilHumidity();
-            SoilHumidity soilHum = soilHumList.FindLast(item => item.plantId.Equals(((Plant)tappedItem).id));
+            SoilHumidity soilHum = soilHumList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
             Console.WriteLine("Dette er air Temperature: " + soilHum);
             if (soilHum != null)
             {
-                plantSoilHum.Text = "Soil Humidity: " + soilHum.humidity;
+                plantSoilHum.Text = "Soil Humidity: " + soilHum.Humidity;
             }
 
         }

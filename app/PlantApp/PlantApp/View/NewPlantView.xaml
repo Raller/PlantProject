@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantApp.View.NewPlantView"
+             Title="Opret plante">
+    <ContentPage.Content>
+        <StackLayout Margin="50, 20"
+                     VerticalOptions="Center">
+
+            <Frame HasShadow="false"
+                   CornerRadius="100"
+                   Padding="0"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   WidthRequest="175"
+                   HeightRequest="175">
+                <Image Source="{Binding Image.Source}"
+                       HeightRequest="175"
+                       VerticalOptions="Center"
+                       Aspect="AspectFill"/>
+            </Frame>
+            <Entry Placeholder="Navn"
+                   Margin="0, 20, 0, 10"
+                   Text="{Binding Plant.Name}"/>
+            <Entry Placeholder="Type"
+                   Margin="0, 0, 0, 30"
+                   Text="{Binding Plant.Type}"/>
+            <Button Text="Tilføj placering" 
+                    Margin="55, 0, 55, 10"
+                    Command="{Binding OpenMapCommand}"/>
+            <Button Text="Tag billede" 
+                    Margin="55, 0, 55, 10"
+                    Command="{Binding TakePhotoCommand}"/>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Margin="0, 10, 0, 0">
+                <Button Text="Annuller"
+                        WidthRequest="150"
+                        BackgroundColor="#d9534f"
+                        Margin="0, 0, 5, 0"
+                        Command="{Binding CancelCommand}"/>
+                <Button Text="Gem" 
+                        WidthRequest="150"
+                        BackgroundColor="#5cb85c"
+                        Margin="5, 0, 0, 0"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

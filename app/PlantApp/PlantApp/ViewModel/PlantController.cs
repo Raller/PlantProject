@@ -4,15 +4,36 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Newtonsoft.Json;
 using PlantApp.Model;
+using PlantApp.View;
+using Xamarin.Forms;
 
 namespace PlantApp.ViewModel
 {
-    class PlantController
+    public class PlantController
     {
 
         private List<Plant> plantsList = new List<Plant>();
+
+        public ICommand NewPlantCommand { get; private set; }
+        INavigation navigation;
+
+        public PlantController()
+        {
+
+        }
+        public PlantController(INavigation nav)
+        {
+            navigation = nav;
+            NewPlantCommand = new Command(NavigateToNewPlant);
+        }
+
+        private async void NavigateToNewPlant()
+        {
+            await navigation.PushAsync(new NewPlantView());
+        }
 
         public List<Plant> GenerateCustomerListAsync()
         {
@@ -34,7 +55,7 @@ namespace PlantApp.ViewModel
                 var plants = response1.Content.ReadAsAsync<IEnumerable<Plant>>().Result;
                 foreach (var item in plants)
                 {
-                    Console.WriteLine(item.name);
+                    Console.WriteLine(item.Name);
                     listOfBtn.Add(item);
                 }
             }

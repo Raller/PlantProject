@@ -11,7 +11,7 @@ namespace PlantApp
         {
             InitializeComponent();
 
-            MainPage = new ViewPlant();
+            MainPage = new NavigationPage(new ViewPlant());
         }
 
         protected override void OnStart()

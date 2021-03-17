@@ -12,25 +12,22 @@ namespace PlantApp.Model
          
         }
         [JsonProperty("_id")]
-        public string id { get; set; }
+        public string Id { get; set; }
         [JsonProperty("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
         [JsonProperty("imageUrl")]
-        public string imageUrl { get; set; }
+        public string ImageUrl { get; set; }
         [JsonProperty("type")]
-        public string type { get; set; }
+        public string Type { get; set; }
         [JsonProperty("longitude")]
-        public string longitude { get; set; }
+        public string Longitude { get; set; }
         [JsonProperty("latitude")]
-        public string latitude { get; set; }
+        public string Latitude { get; set; }
 
         [JsonProperty("date")]
-        public string date { get; set; }
+        public string Date { get; set; }
 
-        [JsonProperty("__v")]
-        public int v { get; set; }
-
-        public string allInfo => $"{name}"+ " - " + $"{type}";
+        public string allInfo => $"{Name}"+ " - " + $"{Type}";
 
         public void test()
         {

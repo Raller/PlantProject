@@ -5,19 +5,19 @@ using Newtonsoft.Json;
 
 namespace PlantApp.Model
 {
-    class Temperature
+    public class Temperature
     {
         [JsonProperty("_id")]
         public string TempId { get; set; }
 
         [JsonProperty("temperature")]
-        public string temp { get; set; }
+        public string Temp { get; set; }
 
         [JsonProperty("plantId")]
-        public string plantId { get; set; }
+        public string PlantId { get; set; }
 
         [JsonProperty("date")]
-        public DateTime date  { get; set; }
+        public DateTime Date  { get; set; }
 
      
     }
