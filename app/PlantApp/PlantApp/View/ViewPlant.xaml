@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantApp.View.ViewPlant">
+    <StackLayout x:Name="stack1" BackgroundColor="#0cf78e">
+        <Grid x:Name="PlantGrid" IsVisible="False" HorizontalOptions="Center" VerticalOptions="Start">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image x:Name="PlantPicture" Grid.Row ="0" Grid.Column="0" Source="noPicture.jpg" />
+            <Frame Grid.Row="1" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
+                <Label x:Name="plantName" Text="PlantName"  />
+            </Frame>
+            <Frame Grid.Row="2" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
+                <Label  x:Name="plantId" Text="PlantID" HorizontalOptions="Start"/>
+                </Frame>
+            <Frame Grid.Row="3" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
+                <Label  x:Name="plantType" Text="Type" HorizontalOptions="Start"/>
+            </Frame>
+            <Frame Grid.Row="4" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
+                <Label  x:Name="plantAirHum" Text="AirHum" HorizontalOptions="Start"/>
+            </Frame>
+            <Frame Grid.Row="5" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
+                <Label  x:Name="plantAirTemp" Text="AirTemp" HorizontalOptions="Start"/>
+            </Frame>
+            <Frame Grid.Row="6" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
+                <Label  x:Name="plantSoilHum" Text="SoilHum" HorizontalOptions="Start"/>
+            </Frame>
+        </Grid>
+
+        <ListView x:Name="PlantList" 
+                  ItemsSource="{Binding Plants}" ItemSelected="PlantList_OnItemSelected">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding allInfo}">
+
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>
+</ContentPage>
