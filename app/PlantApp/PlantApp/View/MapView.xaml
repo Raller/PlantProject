@@ -5,26 +5,13 @@
              x:Class="PlantApp.View.MapView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="test"/>
             <maps:Map MapClicked="Map_MapClicked"
                       IsShowingUser="True"
                       x:Name="map">
-                <x:Arguments>
-                    <maps:MapSpan>
-                        <x:Arguments>
-                            <maps:Position>
-                                <x:Arguments>
-                                    <x:Double>36.9628066</x:Double>
-                                    <x:Double>-122.0194722</x:Double>
-                                </x:Arguments>
-                            </maps:Position>
-                            <x:Double>0.01</x:Double>
-                            <x:Double>0.01</x:Double>
-                        </x:Arguments>
-                    </maps:MapSpan>
-                </x:Arguments>
-
             </maps:Map>
+            <Button Text="Gem position"
+                    BackgroundColor="#5cb85c"
+                    Margin="75, 25"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

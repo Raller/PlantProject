@@ -35,5 +35,10 @@ namespace PlantApp.View
             Console.WriteLine($"MapClick: {e.Position.Latitude}, {e.Position.Longitude}");
 
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync();
+        }
     }
 }
