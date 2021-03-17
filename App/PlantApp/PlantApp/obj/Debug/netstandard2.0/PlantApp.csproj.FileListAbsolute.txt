@@ -1,0 +1,15 @@
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\bin\Debug\netstandard2.0\PlantApp.deps.json
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\bin\Debug\netstandard2.0\PlantApp.dll
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\bin\Debug\netstandard2.0\ref\PlantApp.dll
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\bin\Debug\netstandard2.0\PlantApp.pdb
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\PlantApp.csprojAssemblyReference.cache
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\PlantApp.AssemblyInfoInputs.cache
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\PlantApp.AssemblyInfo.cs
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\PlantApp.csproj.CoreCompileInputs.cache
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\PlantApp.dll
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\ref\PlantApp.dll
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\PlantApp.pdb
+C:\Users\kaspe\source\repos\PlantApp\PlantApp\PlantApp\obj\Debug\netstandard2.0\View\ViewPlant.xaml.g.cs
