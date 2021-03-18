@@ -7,11 +7,13 @@
         <StackLayout>
             <maps:Map MapClicked="Map_MapClicked"
                       IsShowingUser="True"
-                      x:Name="map">
+                      x:Name="map"
+                      MapType="Satellite">
             </maps:Map>
             <Button Text="Gem position"
                     BackgroundColor="#5cb85c"
-                    Margin="75, 25"/>
+                    Margin="75, 25"
+                    Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using RateABeer.Model;
+﻿using PlantApp.ViewModel;
+using RateABeer.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,6 @@ namespace PlantApp.View
         {
             GetLocation();
             InitializeComponent();
-
         }
 
         async void GetLocation()
@@ -32,8 +32,16 @@ namespace PlantApp.View
 
         private void Map_MapClicked(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
+            map.Pins.Clear();
             Console.WriteLine($"MapClick: {e.Position.Latitude}, {e.Position.Longitude}");
-
+            Pin pin = new Pin
+            {
+                Label = "Plantens lokation",
+                Type = PinType.Generic,
+                Position = new Position(e.Position.Latitude, e.Position.Longitude)
+            };
+            map.Pins.Add(pin);
+            NewPlantViewModel.position = new Location(e.Position.Latitude, e.Position.Longitude);
         }
 
         private void Button_Clicked(object sender, EventArgs e)

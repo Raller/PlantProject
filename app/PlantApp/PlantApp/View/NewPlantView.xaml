@@ -25,12 +25,12 @@
             <Entry Placeholder="Type"
                    Margin="0, 0, 0, 30"
                    Text="{Binding Plant.Type}"/>
-            <Button Text="Tilføj placering" 
-                    Margin="55, 0, 55, 10"
-                    Command="{Binding OpenMapCommand}"/>
             <Button Text="Tag billede" 
                     Margin="55, 0, 55, 10"
                     Command="{Binding TakePhotoCommand}"/>
+            <Button Text="Tilføj placering" 
+                    Margin="55, 0, 55, 10"
+                    Command="{Binding OpenMapCommand}"/>
 
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="Center"
@@ -43,7 +43,8 @@
                 <Button Text="Gem" 
                         WidthRequest="150"
                         BackgroundColor="#5cb85c"
-                        Margin="5, 0, 0, 0"/>
+                        Margin="5, 0, 0, 0"
+                        Command="{Binding SavePlantCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
