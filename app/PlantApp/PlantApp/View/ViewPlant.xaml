@@ -1,33 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlantApp.View.ViewPlant">
+             x:Class="PlantApp.View.ViewPlant"
+             NavigationPage.HasNavigationBar="False">
     <StackLayout x:Name="stack1" BackgroundColor="#0cf78e">
-        <AbsoluteLayout Margin="5, 10">
+        <AbsoluteLayout Margin="0, 10">
 
             <ListView x:Name="PlantList" 
                       ItemsSource="{Binding Plants}" 
-                      ItemSelected="PlantList_OnItemSelected">
-                <ListView.ItemTemplate >
+                      ItemSelected="PlantList_OnItemSelected"
+                      HasUnevenRows="True"
+                      RowHeight="80">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal"
-                                         Margin="-5">
-                                <Frame HasShadow="false"
-                                       CornerRadius="100"
+                            <StackLayout Orientation="Horizontal">
+                                <Frame CornerRadius="100"
                                        Padding="0"
                                        IsClippedToBounds="True"
                                        HorizontalOptions="Center"
-                                       WidthRequest="50"
-                                       HeightRequest="50">
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       Margin="5">
                                     <Image Source="{Binding ImageUrl}" 
-                                           HeightRequest="50"
                                            VerticalOptions="Center"
+                                           HeightRequest="75"
                                            Aspect="AspectFill"/>
                                 </Frame>
                                 <Label Text="{Binding allInfo}" 
                                        TextColor="Black"
-                                       VerticalOptions="Center"/>
+                                       VerticalOptions="Center"
+                                       FontSize="18"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -36,11 +39,14 @@
             </ListView>
 
 
+
             <ImageButton AbsoluteLayout.LayoutFlags="PositionProportional"  
-                             AbsoluteLayout.LayoutBounds=".95,.95,95,95"
+                             AbsoluteLayout.LayoutBounds=".95,.98,90,90"
                              Source="addIcon.png" 
                              BackgroundColor="Transparent"
                              Command="{Binding NewPlantCommand}"/>
+            
+            
         </AbsoluteLayout>
     </StackLayout>
 </ContentPage>

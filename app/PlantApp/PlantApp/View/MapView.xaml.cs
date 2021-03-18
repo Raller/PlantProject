@@ -25,8 +25,16 @@ namespace PlantApp.View
 
         async void GetLocation()
         {
-            var position = await Geolocation.GetLocationAsync();
-            map.MoveToRegion(new MapSpan(new Position(position.Latitude, position.Longitude), 0.01, 0.01));
+            try
+            {
+                var position = await Geolocation.GetLocationAsync();
+                map.MoveToRegion(new MapSpan(new Position(position.Latitude, position.Longitude), 0.01, 0.01));
+
+            } catch (Exception e)
+            {
+                await Application.Current.MainPage.DisplayAlert("Fejl", "Slå GPS til for at benytte kortfunktionen", "Ok");
+            }
+
 
         }
 

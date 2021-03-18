@@ -32,8 +32,12 @@ namespace PlantApp.View
 
         private void PlantList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushAsync(new InfoView(e));
 
+            if (e.SelectedItem == null)
+                return;
+
+            Navigation.PushAsync(new InfoView(e));
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }
