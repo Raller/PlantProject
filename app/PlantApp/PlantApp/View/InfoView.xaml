@@ -10,8 +10,6 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
 
-
-
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -41,8 +39,5 @@
                 <Label  x:Name="plantSoilHum" Text="SoilHum" HorizontalOptions="Start"/>
             </Frame>
         </Grid>
-
-        <Button Text="Ny plante" 
-                Command="{Binding NewPlantCommand}"/>
     </StackLayout>
 </ContentPage>

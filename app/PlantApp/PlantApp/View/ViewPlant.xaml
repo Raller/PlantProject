@@ -17,7 +17,12 @@
             </ListView.ItemTemplate>
 
         </ListView>
-        <Button Text="Ny plante" 
-                Command="{Binding NewPlantCommand}"/>
+        <AbsoluteLayout Margin="0, 0, 0, 15">
+            <ImageButton Source="addIcon.png" 
+                         BackgroundColor="Transparent"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"  
+                         AbsoluteLayout.LayoutBounds=".95,.95,85,85"
+                         Command="{Binding NewPlantCommand}"/>
+        </AbsoluteLayout>
     </StackLayout>
 </ContentPage>

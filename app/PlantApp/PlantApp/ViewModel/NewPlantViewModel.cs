@@ -55,9 +55,7 @@ namespace PlantApp.ViewModel
 
         private async void TakePicture()
         {
-            //Image.Source = await Camera.TakePhotoAsync();
             path = await Camera.TakePhotoAsync();
-            Console.WriteLine(path);
             Image.Source = path;
         }
 
@@ -72,46 +70,10 @@ namespace PlantApp.ViewModel
             Plant.Latitude = position.Latitude.ToString();
             Plant.Longitude = position.Longitude.ToString();
             Console.WriteLine("Long " + position.Longitude + " lat " + position.Latitude);
-            await Post("http://192.168.39.147:3000/plant");
+            await Post("https://plantprojectapi.azurewebsites.net/plant");
+            await Application.Current.MainPage.DisplayAlert("Plante opretter", "Planten er blevet oprettet", "Ok");
+            await navigation.PopAsync();
         }
-
-        /*private async void Post()
-        {
-            //var fileStream = new FileStream(path, FileMode.Open);
-
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://192.168.39.147:3000/");
-            MultipartFormDataContent form = new MultipartFormDataContent();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("multipart/form-data"));
-
-
-            form.Add(new StringContent(Plant.Name), "name");
-            form.Add(new StringContent(Plant.Type), "type");
-            form.Add(new StringContent(Plant.Latitude), "latitude");
-            form.Add(new StringContent(Plant.Longitude), "longitude");
-
-            form.Add(new ByteArrayContent(File.ReadAllBytes(path)), "image");
-
-            Console.WriteLine("file added");
-
-            HttpResponseMessage response = await httpClient.PostAsync("plant", form);
-
-            Console.WriteLine(response.StatusCode);
-
-            response.EnsureSuccessStatusCode();
-            httpClient.Dispose();
-            string sd = response.Content.ReadAsStringAsync().Result;
-
-            Console.WriteLine(sd);
-        }
-
-        /*private byte[] ConvertImage()
-        {
-            public byte[] imageByte;
-            Stream imageStream = Image.GetStream();
-            BinaryReader br = new BinaryReader(imageStream);
-            imageByte = br.ReadBytes((int)imageStream.Length);
-        }*/
 
         private async Task<System.IO.Stream> Post(string actionUrl)
         {
