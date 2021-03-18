@@ -30,7 +30,7 @@ namespace PlantApp.View
 
         }
 
-        private void Map_MapClicked(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
+        private void Map_MapClicked(object sender, MapClickedEventArgs e)
         {
             map.Pins.Clear();
             Console.WriteLine($"MapClick: {e.Position.Latitude}, {e.Position.Longitude}");

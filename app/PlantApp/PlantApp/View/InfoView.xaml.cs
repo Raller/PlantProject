@@ -19,7 +19,8 @@ namespace PlantApp.View
         ObservableCollection<Plant> _plants = new ObservableCollection<Plant>();
         public ObservableCollection<Plant> Plants { get { return _plants; } }
         PlantController ctr = new PlantController();
-        private SelectedItemChangedEventArgs e; 
+        private SelectedItemChangedEventArgs e;
+        private Plant plant;
 
         public InfoView(SelectedItemChangedEventArgs e)
         {
@@ -36,6 +37,8 @@ namespace PlantApp.View
         private void PlantList_OnItemSelected()
         {
             var tappedItem = e.SelectedItem;
+            plant = tappedItem as Plant;
+            Console.WriteLine("lat: " + plant.Latitude + " long " + plant.Longitude);
             PlantGrid.IsVisible = true;
             Console.WriteLine("Dette er imageUrl: " + ((Plant)tappedItem).ImageUrl);
             if ((((Plant)tappedItem).ImageUrl) != null)
@@ -76,6 +79,11 @@ namespace PlantApp.View
                 plantSoilHum.Text = "Soil Humidity: " + soilHum.Humidity;
             }
 
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PlantLocationView(plant));
         }
     }
 }

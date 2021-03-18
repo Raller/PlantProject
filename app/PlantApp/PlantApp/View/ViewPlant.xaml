@@ -3,26 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlantApp.View.ViewPlant">
     <StackLayout x:Name="stack1" BackgroundColor="#0cf78e">
-        
+        <AbsoluteLayout Margin="5, 10">
 
-        <ListView x:Name="PlantList" 
-                  ItemsSource="{Binding Plants}" ItemSelected="PlantList_OnItemSelected">
+            <ListView x:Name="PlantList" 
+                      ItemsSource="{Binding Plants}" 
+                      ItemSelected="PlantList_OnItemSelected">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="-5">
+                                <Frame HasShadow="false"
+                                       CornerRadius="100"
+                                       Padding="0"
+                                       IsClippedToBounds="True"
+                                       HorizontalOptions="Center"
+                                       WidthRequest="50"
+                                       HeightRequest="50">
+                                    <Image Source="{Binding ImageUrl}" 
+                                           HeightRequest="50"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"/>
+                                </Frame>
+                                <Label Text="{Binding allInfo}" 
+                                       TextColor="Black"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding allInfo}">
+            </ListView>
 
-                    </TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
 
-        </ListView>
-        <AbsoluteLayout Margin="0, 0, 0, 15">
-            <ImageButton Source="addIcon.png" 
-                         BackgroundColor="Transparent"
-                         AbsoluteLayout.LayoutFlags="PositionProportional"  
-                         AbsoluteLayout.LayoutBounds=".95,.95,85,85"
-                         Command="{Binding NewPlantCommand}"/>
+            <ImageButton AbsoluteLayout.LayoutFlags="PositionProportional"  
+                             AbsoluteLayout.LayoutBounds=".95,.95,95,95"
+                             Source="addIcon.png" 
+                             BackgroundColor="Transparent"
+                             Command="{Binding NewPlantCommand}"/>
         </AbsoluteLayout>
     </StackLayout>
 </ContentPage>

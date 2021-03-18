@@ -21,6 +21,7 @@ namespace PlantApp.ViewModel
 
         public static Location position;
         string path = "";
+        INavigation navigation;
 
         private Plant plant = new Plant();
         public Plant Plant { get { return plant; } set { plant = value; OnPropertyChanged(); } }
@@ -33,11 +34,12 @@ namespace PlantApp.ViewModel
         public ICommand OpenMapCommand { get; private set; }
         public ICommand SavePlantCommand { get; private set; }
 
-        INavigation navigation;
+
         public NewPlantViewModel()
         {
 
         }
+
         public NewPlantViewModel(INavigation nav)
         {
             navigation = nav;
@@ -61,18 +63,23 @@ namespace PlantApp.ViewModel
 
         private async void OpenMap()
         {
-            Console.WriteLine("navigated");
             await navigation.PushAsync(new MapView());
         }
 
         private async void SavePlant()
         {
-            Plant.Latitude = position.Latitude.ToString();
-            Plant.Longitude = position.Longitude.ToString();
-            Console.WriteLine("Long " + position.Longitude + " lat " + position.Latitude);
-            await Post("https://plantprojectapi.azurewebsites.net/plant");
-            await Application.Current.MainPage.DisplayAlert("Plante opretter", "Planten er blevet oprettet", "Ok");
-            await navigation.PopAsync();
+            
+            try
+            {
+                Plant.Latitude = position.Latitude.ToString();
+                Plant.Longitude = position.Longitude.ToString();
+                await Post("https://plantprojectapi.azurewebsites.net/plant");
+                await Application.Current.MainPage.DisplayAlert("Plante oprettet", "Planten er blevet oprettet", "Ok");
+                await navigation.PopAsync();
+            } catch(Exception e)
+            {
+                await Application.Current.MainPage.DisplayAlert("Fejl", "Oprettelse af plante fejlede.\nAlle felter skal udfyldes.", "Ok");
+            }
         }
 
         private async Task<System.IO.Stream> Post(string actionUrl)

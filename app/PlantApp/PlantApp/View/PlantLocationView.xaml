@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="PlantApp.View.PlantLocationView">
+    <ContentPage.Content>
+        <StackLayout>
+            <maps:Map IsShowingUser="True"
+                      x:Name="map"
+                      MapType="Satellite">
+            </maps:Map>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

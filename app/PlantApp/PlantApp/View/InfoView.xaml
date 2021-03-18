@@ -4,11 +4,13 @@
              x:Class="PlantApp.View.InfoView"
              Title="Se plante detaljer">
     <StackLayout x:Name="stack1" BackgroundColor="#0cf78e">
-        <Grid x:Name="PlantGrid"  HorizontalOptions="Center" VerticalOptions="Start">
+        <Grid x:Name="PlantGrid"  HorizontalOptions="Center" VerticalOptions="Start" Margin="0, 10, 0, 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+
+
 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -18,6 +20,8 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
             </Grid.RowDefinitions>
             <Image x:Name="PlantPicture" Grid.Row ="0" Grid.Column="0" Source="noPicture.jpg" />
             <Frame Grid.Row="1" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
@@ -38,6 +42,12 @@
             <Frame Grid.Row="6" Grid.Column="0" OutlineColor="Black"  VerticalOptions="CenterAndExpand">
                 <Label  x:Name="plantSoilHum" Text="SoilHum" HorizontalOptions="Start"/>
             </Frame>
+            <Button Grid.Row="7" Grid.Column="0"
+                    Text="Placering" 
+                    Clicked="Button_Clicked"/>
         </Grid>
+        
+        
+
     </StackLayout>
 </ContentPage>
