@@ -32,47 +32,7 @@ namespace PlantApp.View
 
         private void PlantList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var tappedItem = e.SelectedItem;
-            PlantGrid.IsVisible = true;
-            PlantList.IsVisible = false;
-            Console.WriteLine("Dette er imageUrl: " + ((Plant)tappedItem).ImageUrl);
-            if ((((Plant) tappedItem).ImageUrl) != null)
-            {
-                
-                PlantPicture.Source = (((Plant)tappedItem).ImageUrl);
-            } 
-
-
-           
-            plantName.Text = "Navn: " + (((Plant) tappedItem).Name);
-            plantId.Text = "ID: " +(((Plant)tappedItem).Id);
-            plantType.Text = "Type: " + (((Plant)tappedItem).Type);
-            Console.WriteLine("Jeg er blevet klikket");
-            Console.WriteLine(((Plant)tappedItem).Id);
-            List<AirHumidity> airList = ctr.GetAirHumidity();
-            
-            AirHumidity airhums = airList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
-            Console.WriteLine("Dette er airhums: " + airhums );
-            if (airhums != null)
-            {
-                plantAirHum.Text = "Air Humidity: " + airhums.Humidity;
-            }
-
-            List<Temperature> TempList = ctr.GetAirTemperature();
-            Temperature airTemp = TempList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
-            Console.WriteLine("Dette er air Temperature: " + airTemp);
-            if (airTemp != null)
-            {
-                plantAirTemp.Text = "Air Temperature: " + airTemp.Temp;
-            }
-
-            List<SoilHumidity> soilHumList = ctr.GetSoilHumidity();
-            SoilHumidity soilHum = soilHumList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
-            Console.WriteLine("Dette er air Temperature: " + soilHum);
-            if (soilHum != null)
-            {
-                plantSoilHum.Text = "Soil Humidity: " + soilHum.Humidity;
-            }
+            Navigation.PushAsync(new InfoView(e));
 
         }
     }
