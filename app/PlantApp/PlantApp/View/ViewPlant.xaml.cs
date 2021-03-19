@@ -36,7 +36,7 @@ namespace PlantApp.View
             if (e.SelectedItem == null)
                 return;
 
-            Navigation.PushAsync(new InfoView(e));
+            Navigation.PushAsync(new PlantInfoTabbedPage(e));
             ((ListView)sender).SelectedItem = null;
         }
     }
