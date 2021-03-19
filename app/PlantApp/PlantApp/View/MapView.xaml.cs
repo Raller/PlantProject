@@ -1,5 +1,5 @@
 ﻿using PlantApp.ViewModel;
-using RateABeer.Model;
+using PlantApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

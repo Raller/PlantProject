@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlantApp.Model;
+using PlantApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +19,11 @@ namespace PlantApp.View
             InitializeComponent();
         }
 
-        public PlantInfoTabbedPage(SelectedItemChangedEventArgs e)
+        public PlantInfoTabbedPage(Plant selectedPlant)
         {
             InitializeComponent();
+            infoPage.BindingContext = new PlantInfoViewModel(selectedPlant);
+            historyPage.BindingContext = new PlantHistoryViewModel(selectedPlant);
         }
     }
 }

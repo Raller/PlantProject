@@ -9,6 +9,8 @@ namespace PlantApp
     {
         public App()
         {
+            Xamarin.Forms.DataGrid.DataGridComponent.Init();
+
             InitializeComponent();
 
             MainPage = new NavigationPage(new ViewPlant());
