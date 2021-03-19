@@ -9,7 +9,10 @@
              android:TabbedPage.BarSelectedItemColor="Black"
              x:Class="PlantApp.View.PlantInfoTabbedPage">
     <!--Pages can be added as references or inline-->
-    <ContentPage Title="Information" IconImageSource="info.xml">
+    <ContentPage x:Name="infoPage" Title="Information" IconImageSource="info.xml">
+        
+        
+        
     </ContentPage>
     <ContentPage Title="Historik" IconImageSource="history.xml"/>
     <ContentPage Title="Placering" IconImageSource="map.xml"/>
