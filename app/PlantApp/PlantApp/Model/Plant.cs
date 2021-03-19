@@ -14,7 +14,7 @@ namespace PlantApp.Model
         [JsonProperty("_id")]
         public string Id { get; set; }
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get ; set; }
         [JsonProperty("imageUrl")]
         public string ImageUrl { get; set; }
         [JsonProperty("type")]

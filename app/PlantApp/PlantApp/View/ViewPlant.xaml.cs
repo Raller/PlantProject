@@ -25,7 +25,7 @@ namespace PlantApp.View
 
             InitializeComponent();
             BindingContext = new PlantController(Navigation);
-            PlantList.ItemsSource = ctr.GenerateCustomerListAsync();
+            PlantList.ItemsSource = ctr.getPlants();
 
         }
 
@@ -35,8 +35,8 @@ namespace PlantApp.View
 
             if (e.SelectedItem == null)
                 return;
-
-            Navigation.PushAsync(new PlantInfoTabbedPage(e));
+            Plant selectedPlant = e.SelectedItem as Plant;
+            Navigation.PushAsync(new PlantInfoTabbedPage(selectedPlant));
             ((ListView)sender).SelectedItem = null;
         }
     }

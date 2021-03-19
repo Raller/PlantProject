@@ -35,7 +35,7 @@ namespace PlantApp.ViewModel
             await navigation.PushAsync(new NewPlantView());
         }
 
-        public List<Plant> GenerateCustomerListAsync()
+        public List<Plant> getPlants()
         {
 
             var listOfBtn = new List<Plant>();
@@ -47,7 +47,6 @@ namespace PlantApp.ViewModel
             //client.DefaultRequestHeaders.Add("appkey", "myapp_key");
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-
             HttpResponseMessage response1 = client.GetAsync("plant").Result;
             Console.WriteLine("Besked fra server " + response1.StatusCode);
             if (response1.IsSuccessStatusCode)
@@ -55,7 +54,7 @@ namespace PlantApp.ViewModel
                 var plants = response1.Content.ReadAsAsync<IEnumerable<Plant>>().Result;
                 foreach (var item in plants)
                 {
-                    Console.WriteLine(item.Name);
+                    Console.WriteLine(item.Name); 
                     listOfBtn.Add(item);
                 }
             }
@@ -68,7 +67,7 @@ namespace PlantApp.ViewModel
             return listOfBtn;
         }
 
-        public List<AirHumidity> GetAirHumidity()
+        public List<AirHumidity> GetAirHumidity(Plant plant)
         {
 
             var listOfAirHum = new List<AirHumidity>();
@@ -80,7 +79,7 @@ namespace PlantApp.ViewModel
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response1 = client.GetAsync("airhumidity").Result;
+            HttpResponseMessage response1 = client.GetAsync("airhumidity/plantid/"+plant.Id).Result;
             Console.WriteLine("Besked fra server " + response1.StatusCode);
             if (response1.IsSuccessStatusCode)
             {
@@ -100,10 +99,10 @@ namespace PlantApp.ViewModel
             return listOfAirHum;
         }
 
-        public List<Temperature> GetAirTemperature()
+        public List<Temperature> GetAirTemperature(Plant plant)
         {
 
-            var listOfAirTemp = new List<Temperature>();
+            List<Temperature> listOfAirTemp = new List<Temperature>();
 
 
             HttpClient client = new HttpClient();
@@ -112,7 +111,7 @@ namespace PlantApp.ViewModel
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response1 = client.GetAsync("temperature").Result;
+            HttpResponseMessage response1 = client.GetAsync("temperature/plantId/" + plant.Id).Result;
             Console.WriteLine("Besked fra server " + response1.StatusCode);
             if (response1.IsSuccessStatusCode)
             {
