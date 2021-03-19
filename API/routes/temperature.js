@@ -51,6 +51,16 @@ router.get('/plantid/:plantId', async (req, res) => {
     }
 })
 
+//Get plant's latest temperature
+router.get('/latest/:plantId', async (req, res) => {
+    try {
+        const temperature = await Temperature.findOne({plantId: req.params.plantId}).sort({date: -1}).limit(1);
+        return res.status(200).json(temperature);
+    } catch (err) {
+        return res.json(err);
+    }
+})
+
 //Delete temperature by id
 router.delete('/id/:tempId', async (req, res) => {
     try {

@@ -50,6 +50,16 @@ router.get('/plantid/:plantId', async (req, res) => {
     }
 })
 
+//Get plant's latest humidity
+router.get('/latest/:plantId', async (req, res) => {
+    try {
+        const humidity = await Airhumidity.findOne({plantId: req.params.plantId}).sort({date: -1}).limit(1);
+        return res.status(200).json(humidity);
+    } catch (err) {
+        return res.json(err);
+    }
+})
+
 //Delete humidity by id
 router.delete('/id/:humidityId', async (req, res) => {
     try {
