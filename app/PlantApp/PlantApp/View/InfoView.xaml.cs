@@ -14,7 +14,7 @@ namespace PlantApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InfoView : ContentPage
     {
-       
+
 
         ObservableCollection<Plant> _plants = new ObservableCollection<Plant>();
         public ObservableCollection<Plant> Plants { get { return _plants; } }
@@ -36,7 +36,7 @@ namespace PlantApp.View
 
         private void PlantList_OnItemSelected()
         {
-            var tappedItem = e.SelectedItem;
+            /*var tappedItem = e.SelectedItem;
             plant = tappedItem as Plant;
             Console.WriteLine("lat: " + plant.Latitude + " long " + plant.Longitude);
             PlantGrid.IsVisible = true;
@@ -64,6 +64,7 @@ namespace PlantApp.View
         private void Button_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new PlantLocationView(plant));
+        }*/
         }
     }
 }

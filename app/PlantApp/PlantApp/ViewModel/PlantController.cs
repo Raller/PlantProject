@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,10 +13,10 @@ using Xamarin.Forms;
 
 namespace PlantApp.ViewModel
 {
-    public class PlantController
+    public class PlantController : Bindable
     {
-
-        private List<Plant> plantsList = new List<Plant>();
+        private ObservableCollection<Plant> plants = new ObservableCollection<Plant>();
+        public ObservableCollection<Plant> Plants { get { return plants; } set { plants = value; OnPropertyChanged(); } }
 
         public ICommand NewPlantCommand { get; private set; }
         INavigation navigation;
@@ -28,6 +29,7 @@ namespace PlantApp.ViewModel
         {
             navigation = nav;
             NewPlantCommand = new Command(NavigateToNewPlant);
+            GetPlants();
         }
 
         private async void NavigateToNewPlant()
@@ -35,130 +37,29 @@ namespace PlantApp.ViewModel
             await navigation.PushAsync(new NewPlantView());
         }
 
-        public List<Plant> getPlants()
+        public async void GetPlants()
         {
-
-            var listOfBtn = new List<Plant>();
-            
-           
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://plantprojectapi.azurewebsites.net/");
-            //client.DefaultRequestHeaders.Add("appkey", "myapp_key");
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response1 = client.GetAsync("plant").Result;
-            Console.WriteLine("Besked fra server " + response1.StatusCode);
-            if (response1.IsSuccessStatusCode)
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await client.GetAsync("plant");
+            Console.WriteLine("Besked fra server " + response.StatusCode);
+            if (response.IsSuccessStatusCode)
             {
-                var plants = response1.Content.ReadAsAsync<IEnumerable<Plant>>().Result;
-                foreach (var item in plants)
+                var plantList = await response.Content.ReadAsAsync<IEnumerable<Plant>>();
+
+                foreach (var item in plantList)
                 {
-                    Console.WriteLine(item.Name); 
-                    listOfBtn.Add(item);
+                    Plants.Add(item);
                 }
             }
             else
             {
                 //Console.WriteLine("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
             }
-
-
-            return listOfBtn;
         }
 
-        public List<AirHumidity> GetAirHumidity(Plant plant)
-        {
-
-            var listOfAirHum = new List<AirHumidity>();
-
-
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://plantprojectapi.azurewebsites.net/");
-            //client.DefaultRequestHeaders.Add("appkey", "myapp_key");
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response1 = client.GetAsync("airhumidity/plantid/"+plant.Id).Result;
-            Console.WriteLine("Besked fra server " + response1.StatusCode);
-            if (response1.IsSuccessStatusCode)
-            {
-                var airHum = response1.Content.ReadAsAsync<IEnumerable<AirHumidity>>().Result;
-                foreach (var item in airHum)
-                {
-                    listOfAirHum.Add(item);
-                    Console.WriteLine(" this is huuuummm id:  " + item.HumId);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Error Code" + response1.StatusCode + " : Message - " + response1.ReasonPhrase);
-            }
-
-
-            return listOfAirHum;
-        }
-
-        public List<Temperature> GetAirTemperature(Plant plant)
-        {
-
-            List<Temperature> listOfAirTemp = new List<Temperature>();
-
-
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://plantprojectapi.azurewebsites.net/");
-            //client.DefaultRequestHeaders.Add("appkey", "myapp_key");
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response1 = client.GetAsync("temperature/plantId/" + plant.Id).Result;
-            Console.WriteLine("Besked fra server " + response1.StatusCode);
-            if (response1.IsSuccessStatusCode)
-            {
-                var airTemp = response1.Content.ReadAsAsync<IEnumerable<Temperature>>().Result;
-                foreach (var item in airTemp)
-                {
-                    listOfAirTemp.Add(item);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Error Code" + response1.StatusCode + " : Message - " + response1.ReasonPhrase);
-            }
-
-
-            return listOfAirTemp;
-        }
-
-        public List<SoilHumidity> GetSoilHumidity()
-        {
-
-            var listOfSoil = new List<SoilHumidity>();
-
-
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://plantprojectapi.azurewebsites.net/");
-            //client.DefaultRequestHeaders.Add("appkey", "myapp_key");
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response1 = client.GetAsync("soilhumidity").Result;
-            Console.WriteLine("Besked fra server " + response1.StatusCode);
-            if (response1.IsSuccessStatusCode)
-            {
-                var soilHum = response1.Content.ReadAsAsync<IEnumerable<SoilHumidity>>().Result;
-                foreach (var item in soilHum)
-                {
-                    listOfSoil.Add(item);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Error Code" + response1.StatusCode + " : Message - " + response1.ReasonPhrase);
-            }
-
-
-            return listOfSoil;
-        }
+        
     }
 }

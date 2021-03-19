@@ -43,8 +43,7 @@
                 <Label  x:Name="plantSoilHum" Text="SoilHum" HorizontalOptions="Start"/>
             </Frame>
             <Button Grid.Row="7" Grid.Column="0"
-                    Text="Placering" 
-                    Clicked="Button_Clicked"/>
+                    Text="Placering" />
         </Grid>
         
         

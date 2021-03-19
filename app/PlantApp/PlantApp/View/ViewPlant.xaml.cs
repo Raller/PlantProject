@@ -14,25 +14,16 @@ namespace PlantApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewPlant : ContentPage
     {
-      
-
-        ObservableCollection<Plant> _plants = new ObservableCollection<Plant>();
-        public ObservableCollection<Plant> Plants { get { return _plants; } }
-        PlantController ctr = new PlantController();
 
         public ViewPlant()
         {
-
             InitializeComponent();
             BindingContext = new PlantController(Navigation);
-            PlantList.ItemsSource = ctr.getPlants();
-
         }
 
 
         private void PlantList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
             if (e.SelectedItem == null)
                 return;
             Plant selectedPlant = e.SelectedItem as Plant;

@@ -26,6 +26,7 @@ namespace PlantApp.View
             }
 
             InitializeComponent();
+
             Pin pin = new Pin
             {
                 Label = "Plantens lokation",
@@ -34,7 +35,6 @@ namespace PlantApp.View
             };
             map.Pins.Add(pin);
             map.MoveToRegion(new MapSpan(new Position(double.Parse(lat), double.Parse(lgt)), 0.01, 0.01));
-
         }
     }
 }

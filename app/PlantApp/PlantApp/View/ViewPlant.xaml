@@ -25,7 +25,9 @@
                                     <Image Source="{Binding ImageUrl}" 
                                            VerticalOptions="Center"
                                            HeightRequest="75"
-                                           Aspect="AspectFill"/>
+                                           Aspect="AspectFill"
+                                           x:Name="image"/>
+
                                 </Frame>
                                 <Label Text="{Binding allInfo}" 
                                        TextColor="Black"
@@ -45,8 +47,8 @@
                              Source="addIcon.png" 
                              BackgroundColor="Transparent"
                              Command="{Binding NewPlantCommand}"/>
-            
-            
+
+
         </AbsoluteLayout>
     </StackLayout>
 </ContentPage>
