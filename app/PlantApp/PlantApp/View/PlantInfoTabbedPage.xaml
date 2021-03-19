@@ -11,9 +11,25 @@
              x:Class="PlantApp.View.PlantInfoTabbedPage">
     <!--Pages can be added as references or inline-->
     <ContentPage x:Name="infoPage" Title="Information" IconImageSource="info.xml">
+        <StackLayout >
+            <Image x:Name="PlantPicture" Source="{Binding Plant.ImageUrl}"  
+                   HorizontalOptions="Center"
+                   HeightRequest="200"/>
+            <Label  x:Name="plantName"  Text="{Binding Plant.Name,
+                      StringFormat='Navn:  {0}'}"
+                    Margin="25, 10, 0,0"/>
+            <Label  x:Name="plantAirTemp" Text="{Binding Temperature.Temp, 
+                StringFormat='Seneste temperatur:  {0}'}" 
+                    Margin="25, 10, 0,0"/>
+            <Label  x:Name="plantAirHum" Text="{Binding AirHumidity.Humidity,  
+                StringFormat='Luftfugtighed:  {0}'}" 
+                    Margin="25, 10, 0,0"/>
+            <Label  x:Name="plantSoilHum" Text="SoilHum" 
+                    Margin="25, 10, 0,0"/>
+            <Button x:Name="btnPlacering" Text="Certifikat"/>
+        </StackLayout>
 
-       
-        
+
     </ContentPage>
     <ContentPage x:Name="historyPage" Title="Historik" IconImageSource="history.xml" >
 

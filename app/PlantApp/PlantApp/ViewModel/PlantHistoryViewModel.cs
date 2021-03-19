@@ -42,71 +42,85 @@ namespace PlantApp.ViewModel
             //client.DefaultRequestHeaders.Add("appkey", "myapp_key");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var tempResponse = await client.GetAsync("temperature/plantid/" + Plant.Id);
 
-            if (tempResponse.IsSuccessStatusCode)
+            try
             {
-                var temps = await tempResponse.Content.ReadAsAsync<IEnumerable<Temperature>>();
-                foreach (var item in temps)
+
+                var tempResponse = await client.GetAsync("temperature/plantid/" + Plant.Id);
+
+                if (tempResponse.IsSuccessStatusCode)
                 {
-                    datacount++;
-                    tempList.Add(item);
-                    Console.WriteLine("temp: " + item.Temp);
+                    var temps = await tempResponse.Content.ReadAsAsync<IEnumerable<Temperature>>();
+                    foreach (var item in temps)
+                    {
+                        datacount++;
+                        tempList.Add(item);
+                        Console.WriteLine("temp: " + item.Temp);
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine("Error Code" + tempResponse.StatusCode + " : Message - " + tempResponse.ReasonPhrase);
-            }
-
-
-            var airHumResponse = await client.GetAsync("airhumidity/plantid/" + Plant.Id);
-
-
-            if (airHumResponse.IsSuccessStatusCode)
-            {
-                var airHums = await airHumResponse.Content.ReadAsAsync<IEnumerable<AirHumidity>>();
-                foreach (var item in airHums)
+                else
                 {
-                    airHumList.Add(item);
-                    Console.WriteLine("airhum: " + item.Humidity);
+                    Console.WriteLine("Error Code" + tempResponse.StatusCode + " : Message - " + tempResponse.ReasonPhrase);
                 }
-            }
-            else
-            {
-                Console.WriteLine("Error Code" + tempResponse.StatusCode + " : Message - " + tempResponse.ReasonPhrase);
-            }
 
-            var soilHumResponse = await client.GetAsync("soilhumidity/plantid/" + Plant.Id);
 
-            if (soilHumResponse.IsSuccessStatusCode)
-            {
-                var soilHums = await soilHumResponse.Content.ReadAsAsync<IEnumerable<SoilHumidity>>();
-                foreach (var item in soilHums)
+                var airHumResponse = await client.GetAsync("airhumidity/plantid/" + Plant.Id);
+
+
+                if (airHumResponse.IsSuccessStatusCode)
                 {
-                    soilHumList.Add(item);
-                    Console.WriteLine("soilhum: " + item.Humidity);
+                    var airHums = await airHumResponse.Content.ReadAsAsync<IEnumerable<AirHumidity>>();
+                    foreach (var item in airHums)
+                    {
+                        airHumList.Add(item);
+                        Console.WriteLine("airhum: " + item.Humidity);
+                    }
                 }
-            }
-            else
+                else
+                {
+                    Console.WriteLine("Error Code" + tempResponse.StatusCode + " : Message - " + tempResponse.ReasonPhrase);
+                }
+
+                var soilHumResponse = await client.GetAsync("soilhumidity/plantid/" + Plant.Id);
+
+                if (soilHumResponse.IsSuccessStatusCode)
+                {
+                    var soilHums = await soilHumResponse.Content.ReadAsAsync<IEnumerable<SoilHumidity>>();
+                    foreach (var item in soilHums)
+                    {
+                        soilHumList.Add(item);
+                        Console.WriteLine("soilhum: " + item.Humidity);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error Code" + tempResponse.StatusCode + " : Message - " + tempResponse.ReasonPhrase);
+                }
+            } catch (Exception e)
             {
-                Console.WriteLine("Error Code" + tempResponse.StatusCode + " : Message - " + tempResponse.ReasonPhrase);
+                await Application.Current.MainPage.DisplayAlert("Fejl", "Kunne ikke hente historik", "Ok");
             }
             PopulateData();
             Console.WriteLine("count: " + datacount);
         }
 
-        private void PopulateData()
+        private async void PopulateData()
         {
-            for (int i = 0; i < datacount; i++)
+            try
             {
-                plantDataList.Add(new PlantData()
+                for (int i = 0; i < datacount; i++)
                 {
-                    Date = tempList[i].Date,
-                    Temp = tempList[i].Temp,
-                    AirHum = airHumList[i].Humidity,
-                    SoilHum = soilHumList[i].Humidity
-                });
+                    plantDataList.Add(new PlantData()
+                    {
+                        Date = tempList[i].Date,
+                        Temp = tempList[i].Temp,
+                        AirHum = airHumList[i].Humidity,
+                        SoilHum = soilHumList[i].Humidity
+                    });
+                }
+            } catch(Exception e)
+            {
+                await Application.Current.MainPage.DisplayAlert("Fejl", "Kunne ikke hente historik", "Ok");
             }
         }
 

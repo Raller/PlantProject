@@ -49,27 +49,7 @@ namespace PlantApp.View
 
 
 
-            plantName.Text = "Navn: " + (((Plant)tappedItem).Name);
-            plantId.Text = "ID: " + (((Plant)tappedItem).Id);
-            plantType.Text = "Type: " + (((Plant)tappedItem).Type);
-            Console.WriteLine("Jeg er blevet klikket");
-            Console.WriteLine(((Plant)tappedItem).Id);
-            List<AirHumidity> airList = ctr.GetAirHumidity();
-
-            AirHumidity airhums = airList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
-            Console.WriteLine("Dette er airhums: " + airhums);
-            if (airhums != null)
-            {
-                plantAirHum.Text = "Air Humidity: " + airhums.Humidity;
-            }
-
-            List<Temperature> TempList = ctr.GetAirTemperature();
-            Temperature airTemp = TempList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
-            Console.WriteLine("Dette er air Temperature: " + airTemp);
-            if (airTemp != null)
-            {
-                plantAirTemp.Text = "Air Temperature: " + airTemp.Temp;
-            }
+          
 
             List<SoilHumidity> soilHumList = ctr.GetSoilHumidity();
             SoilHumidity soilHum = soilHumList.FindLast(item => item.PlantId.Equals(((Plant)tappedItem).Id));
