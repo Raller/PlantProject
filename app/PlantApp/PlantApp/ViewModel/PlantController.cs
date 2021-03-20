@@ -15,8 +15,8 @@ namespace PlantApp.ViewModel
 {
     public class PlantController : Bindable
     {
-        private ObservableCollection<Plant> plants = new ObservableCollection<Plant>();
-        public ObservableCollection<Plant> Plants { get { return plants; } set { plants = value; OnPropertyChanged(); } }
+        private IEnumerable<Plant> plants = new ObservableCollection<Plant>();
+        public IEnumerable<Plant> Plants { get { return plants; } set { plants = value; OnPropertyChanged(); } }
 
         public ICommand NewPlantCommand { get; private set; }
         INavigation navigation;
@@ -28,18 +28,17 @@ namespace PlantApp.ViewModel
         public PlantController(INavigation nav)
         {
             navigation = nav;
-            NewPlantCommand = new Command(NavigateToNewPlant);
-            GetPlants();
+            NewPlantCommand = new Command(NavigateToNewPlantAsync);
+            Task.Run(async () => await GetPlants());
         }
 
-        private async void NavigateToNewPlant()
+        private async void NavigateToNewPlantAsync()
         {
-            await navigation.PushAsync(new NewPlantView());
+            await Application.Current.MainPage.Navigation.PushAsync(new NewPlantView());
         }
 
-        public async void GetPlants()
+        public async Task GetPlants()
         {
-
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://plantprojectapi.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -47,12 +46,7 @@ namespace PlantApp.ViewModel
             Console.WriteLine("Besked fra server " + response.StatusCode);
             if (response.IsSuccessStatusCode)
             {
-                var plantList = await response.Content.ReadAsAsync<IEnumerable<Plant>>();
-
-                foreach (var item in plantList)
-                {
-                    Plants.Add(item);
-                }
+                Plants = await response.Content.ReadAsAsync<IEnumerable<Plant>>();
             }
             else
             {

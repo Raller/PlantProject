@@ -34,15 +34,25 @@ namespace PlantApp.View
                 lgt = selectedPlant.Longitude.Replace(',', '.');
             }
 
-            Pin pin = new Pin
+            try
             {
-                Label = "Plantens lokation",
-                Type = PinType.Place,
-                Position = new Position(double.Parse(lat), double.Parse(lgt))
-            };
-            map.Pins.Add(pin);
-            map.MoveToRegion(new MapSpan(new Position(double.Parse(lat), double.Parse(lgt)), 0.01, 0.01));
+                Pin pin = new Pin
+                {
+                    Label = "Plantens lokation",
+                    Type = PinType.Place,
+                    Position = new Position(double.Parse(lat), double.Parse(lgt))
+                };
+                map.Pins.Add(pin);
+                map.MoveToRegion(new MapSpan(new Position(double.Parse(lat), double.Parse(lgt)), 0.01, 0.01));
+            } catch (Exception e)
+            {
+                DisplayMessage();
+            }
+        }
 
+        private async void DisplayMessage()
+        {
+            await Application.Current.MainPage.DisplayAlert("Fejl", "Kunne ikke finde placering", "Ok");
         }
     }
 }
