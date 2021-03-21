@@ -22,12 +22,13 @@ namespace PlantApp.View
         }
 
 
-        private void PlantList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void PlantList_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
                 return;
             Plant selectedPlant = e.SelectedItem as Plant;
-            Navigation.PushAsync(new PlantInfoTabbedPage(selectedPlant));
+            await Navigation.PushAsync(new PlantInfoTabbedPage(selectedPlant));
+
             ((ListView)sender).SelectedItem = null;
         }
     }

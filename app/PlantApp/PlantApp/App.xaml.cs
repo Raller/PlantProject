@@ -12,8 +12,10 @@ namespace PlantApp
             Xamarin.Forms.DataGrid.DataGridComponent.Init();
 
             InitializeComponent();
-
-            MainPage = new NavigationPage(new ViewPlant());
+            var page = new NavigationPage(new ViewPlant());
+            page.BarBackgroundColor = Color.FromHex("#02f085");
+            page.BarTextColor = Color.Black;
+            MainPage = page;
         }
 
         protected override void OnStart()
