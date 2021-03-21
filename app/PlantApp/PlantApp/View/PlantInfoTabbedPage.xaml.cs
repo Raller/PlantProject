@@ -25,14 +25,14 @@ namespace PlantApp.View
             infoPage.BindingContext = new PlantInfoViewModel(selectedPlant);
             historyPage.BindingContext = new PlantHistoryViewModel(selectedPlant);
 
-            string lat = "";
-            string lgt = "";
+            string lat = selectedPlant.Latitude;
+            string lgt = selectedPlant.Longitude;
 
-            if (selectedPlant.Latitude.Contains(',') || selectedPlant.Longitude.Contains(','))
+            /*if (selectedPlant.Latitude.Contains(',') || selectedPlant.Longitude.Contains(','))
             {
                 lat = selectedPlant.Latitude.Replace(',', '.');
                 lgt = selectedPlant.Longitude.Replace(',', '.');
-            }
+            }*/
 
             try
             {

@@ -14,17 +14,26 @@
 
     <!--Pages can be added as references or inline-->
     <ContentPage x:Name="infoPage" Title="Information" IconImageSource="info.xml">
-        <StackLayout VerticalOptions="Center">
+        <StackLayout Margin="25, 50">
             <ActivityIndicator IsRunning="{Binding	Source={x:Reference	plantPicture}, Path=IsLoading}"
                                Color="#02f085"
                                HorizontalOptions="Center"
                                IsVisible="{Binding Source={x:Reference plantPicture}, Path=IsLoading}">
 
             </ActivityIndicator>
-            <ffimageloading:CachedImage x:Name="plantPicture" Source="{Binding Plant.ImageUrl}"  
-                                        HorizontalOptions="Center"
-                                        HeightRequest="200"
-                                        Margin="0, 0, 0, 25"/>
+            <Frame HasShadow="false"
+                   CornerRadius="100"
+                   Padding="0"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   WidthRequest="175"
+                   HeightRequest="175">
+                <ffimageloading:CachedImage x:Name="plantPicture" Source="{Binding Plant.ImageUrl}"  
+                                            VerticalOptions="Center"
+                                            HeightRequest="175"
+                                            Aspect="AspectFill"/>
+            </Frame>
+            
             <Label  x:Name="plantName"  Text="{Binding Plant.Name, StringFormat='Navn:  {0}'}"
                     Margin="25, 10, 0,0"
                     TextColor="Black"
