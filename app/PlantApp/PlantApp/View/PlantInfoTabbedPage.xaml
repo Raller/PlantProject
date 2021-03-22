@@ -12,6 +12,11 @@
             android:TabbedPage.BarSelectedItemColor="Black"
             x:Class="PlantApp.View.PlantInfoTabbedPage">
 
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem IconImageSource="delete.png"
+                     Clicked="ToolbarItem_Clicked"/>
+    </TabbedPage.ToolbarItems>
+
     <!--Pages can be added as references or inline-->
     <ContentPage x:Name="infoPage" Title="Information" IconImageSource="info.xml">
         <StackLayout Margin="25, 50">
@@ -33,7 +38,11 @@
                                             HeightRequest="175"
                                             Aspect="AspectFill"/>
             </Frame>
-            
+
+            <Label  x:Name="plantId"  Text="{Binding Plant.Id, StringFormat='Id:  {0}'}"
+                    Margin="25, 10, 0,0"
+                    TextColor="Black"
+                    FontSize="16"/>
             <Label  x:Name="plantName"  Text="{Binding Plant.Name, StringFormat='Navn:  {0}'}"
                     Margin="25, 10, 0,0"
                     TextColor="Black"

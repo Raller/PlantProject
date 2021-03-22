@@ -14,11 +14,12 @@ namespace PlantApp.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewPlant : ContentPage
     {
-
+        PlantController plantCtr;
         public ViewPlant()
         {
             InitializeComponent();
-            BindingContext = new PlantController(Navigation);
+            plantCtr = new PlantController(Navigation);
+            BindingContext = plantCtr;
         }
 
 
@@ -30,6 +31,12 @@ namespace PlantApp.View
             await Navigation.PushAsync(new PlantInfoTabbedPage(selectedPlant));
 
             ((ListView)sender).SelectedItem = null;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await plantCtr.GetPlants();
         }
     }
 }

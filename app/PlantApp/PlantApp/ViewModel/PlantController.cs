@@ -25,11 +25,12 @@ namespace PlantApp.ViewModel
         {
 
         }
+
         public PlantController(INavigation nav)
         {
             navigation = nav;
             NewPlantCommand = new Command(NavigateToNewPlantAsync);
-            Task.Run(async () => await GetPlants());
+            //Task.Run(async () => await GetPlants());
         }
 
         private async void NavigateToNewPlantAsync()
@@ -53,7 +54,5 @@ namespace PlantApp.ViewModel
                 //Console.WriteLine("Error Code" + response.StatusCode + " : Message - " + response.ReasonPhrase);
             }
         }
-
-        
     }
 }

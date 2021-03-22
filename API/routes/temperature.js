@@ -54,7 +54,17 @@ router.get('/plantid/:plantId', async (req, res) => {
 //Get plant's latest temperature
 router.get('/latest/:plantId', async (req, res) => {
     try {
-        const temperature = await Temperature.findOne({plantId: req.params.plantId}).sort({date: -1}).limit(1);
+        const temperature = await Temperature.findOne({ plantId: req.params.plantId }).sort({ date: -1 }).limit(1);
+        return res.status(200).json(temperature);
+    } catch (err) {
+        return res.json(err);
+    }
+})
+
+//Get top 10 latest temperatures
+router.get('/latest/:plantId/:amount', async (req, res) => {
+    try {
+        const temperature = await Temperature.find({ plantId: req.params.plantId }).sort({ date: -1 }).limit(parseInt(req.params.amount));
         return res.status(200).json(temperature);
     } catch (err) {
         return res.json(err);
@@ -74,7 +84,7 @@ router.delete('/id/:tempId', async (req, res) => {
 //Delete temperatures by plantId
 router.delete('/plantid/:plantId', async (req, res) => {
     try {
-        const removedTemperatures = await Temperature.deleteMany({plantId: req.params.plantId});
+        const removedTemperatures = await Temperature.deleteMany({ plantId: req.params.plantId });
         return res.status(200).json(removedTemperatures);
     } catch (err) {
         res.json(err);

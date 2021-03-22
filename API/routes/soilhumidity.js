@@ -53,8 +53,18 @@ router.get('/plantid/:plantId', async (req, res) => {
 //Get plant's latest humidity
 router.get('/latest/:plantId', async (req, res) => {
     try {
-        const humidity = await Soilhumidity.findOne({plantId: req.params.plantId}).sort({date: -1}).limit(1);
+        const humidity = await Soilhumidity.findOne({ plantId: req.params.plantId }).sort({ date: -1 }).limit(1);
         return res.status(200).json(humidity);
+    } catch (err) {
+        return res.json(err);
+    }
+})
+
+//Get top 10 latest humidities
+router.get('/latest/:plantId/:amount', async (req, res) => {
+    try {
+        const humidities = await Soilhumidity.find({ plantId: req.params.plantId }).sort({ date: -1 }).limit(parseInt(req.params.amount));
+        return res.status(200).json(humidities);
     } catch (err) {
         return res.json(err);
     }
@@ -73,7 +83,7 @@ router.delete('/id/:humidityId', async (req, res) => {
 //Delete humidity by plantId
 router.delete('/plantid/:plantId', async (req, res) => {
     try {
-        const removedSoilhumidity = await Soilhumidity.deleteMany({plantId: req.params.plantId});
+        const removedSoilhumidity = await Soilhumidity.deleteMany({ plantId: req.params.plantId });
         return res.status(200).json(removedSoilhumidity);
     } catch (err) {
         res.json(err);

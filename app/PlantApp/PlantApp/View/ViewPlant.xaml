@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlantApp.View.ViewPlant"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              NavigationPage.HasNavigationBar="False">
     <StackLayout x:Name="stack1" BackgroundColor="#02f085">
         <AbsoluteLayout Margin="0, 10">
