@@ -33,15 +33,18 @@
                                                            AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional">
 
                                         </ActivityIndicator>
-                                        <ffimageloading:CachedImage VerticalOptions="Center"
-                                                                    HeightRequest="75"
-                                                                    DownsampleToViewSize="true"
-                                                                    x:Name="image"
-                                                                    Aspect="AspectFill"
-                                                                    Source = "{Binding ImageUrl}"
-                                                                    AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, AutoSize" 
-                                                                    AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional">
-                                        </ffimageloading:CachedImage>
+                                        <Image VerticalOptions="Center"
+                                               HeightRequest="75"
+                                               x:Name="image"
+                                               Aspect="AspectFill"
+                                               AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, AutoSize" 
+                                               AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional">
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding ImageUrl}"
+                                                                CacheValidity="14"
+                                                                CachingEnabled="True"/>
+                                            </Image.Source>
+                                        </Image>
 
                                     </AbsoluteLayout>
 

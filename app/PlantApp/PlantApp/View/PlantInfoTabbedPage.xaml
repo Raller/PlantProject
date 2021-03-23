@@ -40,7 +40,7 @@
             </Frame>
 
             <Label  x:Name="plantId"  Text="{Binding Plant.Id, StringFormat='Id:  {0}'}"
-                    Margin="25, 10, 0,0"
+                    Margin="25, 25, 0,0"
                     TextColor="Black"
                     FontSize="16"/>
             <Label  x:Name="plantName"  Text="{Binding Plant.Name, StringFormat='Navn:  {0}'}"
