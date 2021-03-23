@@ -1,5 +1,4 @@
 const express = require('express');
-const { remove } = require('../models/Temperature');
 const Temperature = require('../models/Temperature');
 
 const router = express.Router();
