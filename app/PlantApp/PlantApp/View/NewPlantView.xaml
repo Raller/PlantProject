@@ -15,10 +15,11 @@
                    HorizontalOptions="Center"
                    WidthRequest="175"
                    HeightRequest="175">
-                <ffimageloading:CachedImage VerticalOptions="Center" HeightRequest="75"
-                                                                DownsampleToViewSize="true"
-                                                                Aspect="AspectFill"
-                                                                Source = "{Binding ImageUrl}">
+                <ffimageloading:CachedImage VerticalOptions="Center" 
+                                            HeightRequest="175"
+                                            DownsampleToViewSize="true"
+                                            Aspect="AspectFill"
+                                            Source = "{Binding Image.Source}">
                 </ffimageloading:CachedImage>
             </Frame>
             <Entry Placeholder="Navn"

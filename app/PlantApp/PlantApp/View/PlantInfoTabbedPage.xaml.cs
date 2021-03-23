@@ -91,8 +91,6 @@ namespace PlantApp.View
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "Certificate.pdf");
 
-            //PlantController ctr = new PlantController();
-            //List<SoilHumidity> list = ctr.GetCertificate(this.Plant);
             // Create a new PDF document
             var httpClient = new HttpClient();
 

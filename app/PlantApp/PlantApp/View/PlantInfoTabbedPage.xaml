@@ -55,7 +55,7 @@
                     Margin="25, 10, 0,0"
                     TextColor="Black"
                     FontSize="16"/>
-            <Label  x:Name="plantSoilHum" Text="{Binding SoilHumidity.Humidity, StringFormat='Jordfugtighed:  {0}%'}" 
+            <Label  x:Name="plantSoilHum" Text="{Binding SoilHumidity.Humidity, StringFormat='Jordfugtighed:  {0}'}" 
                     TextColor="Black"
                     Margin="25, 10, 0,0"
                     FontSize="16"/>
