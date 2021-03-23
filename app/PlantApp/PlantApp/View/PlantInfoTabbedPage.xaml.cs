@@ -2,11 +2,13 @@
 using PlantApp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.XamarinFormsSaveOpenPDFPackage;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -49,7 +51,8 @@ namespace PlantApp.View
                 };
                 map.Pins.Add(pin);
                 map.MoveToRegion(new MapSpan(new Position(double.Parse(lat), double.Parse(lgt)), 0.01, 0.01));
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 DisplayMessage();
             }
@@ -70,15 +73,39 @@ namespace PlantApp.View
 
             try
             {
-                if(answer)
+                if (answer)
                 {
                     await client.DeleteAsync("plant/id/" + plant.Id);
                     await Navigation.PopAsync();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 await DisplayAlert("Fejl", "Kunne ikke slette denne plante", "Ok");
             }
+
+        }
+
+        private async void BtnPlacering_OnClicked(object sender, EventArgs e)
+        {
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "Certificate.pdf");
+
+            //PlantController ctr = new PlantController();
+            //List<SoilHumidity> list = ctr.GetCertificate(this.Plant);
+            // Create a new PDF document
+            var httpClient = new HttpClient();
+
+            var stream =
+                await httpClient.GetStreamAsync("https://plantprojectapi.azurewebsites.net/certificate/" + plant.Id);
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                await CrossXamarinFormsSaveOpenPDFPackage.Current.SaveAndView("Certificate.pdf", "application/pdf",
+                    memoryStream, PDFOpenContext.ChooseApp);
+            }
+
+
 
         }
     }
