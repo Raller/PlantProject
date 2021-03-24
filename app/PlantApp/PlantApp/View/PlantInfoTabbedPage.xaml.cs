@@ -86,16 +86,13 @@ namespace PlantApp.View
 
         }
 
-        private async void BtnPlacering_OnClicked(object sender, EventArgs e)
+        private async void BtnCert_OnClicked(object sender, EventArgs e)
         {
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "Certificate.pdf");
 
             // Create a new PDF document
             var httpClient = new HttpClient();
 
-            var stream =
-                await httpClient.GetStreamAsync("https://plantprojectapi.azurewebsites.net/certificate/" + plant.Id);
+            var stream = await httpClient.GetStreamAsync("https://plantprojectapi.azurewebsites.net/certificate/" + plant.Id);
             using (var memoryStream = new MemoryStream())
             {
                 await stream.CopyToAsync(memoryStream);

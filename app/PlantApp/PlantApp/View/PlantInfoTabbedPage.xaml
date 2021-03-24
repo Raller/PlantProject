@@ -59,7 +59,7 @@
                     TextColor="Black"
                     Margin="25, 10, 0,0"
                     FontSize="16"/>
-            <Button x:Name="btnPlacering" Text="Certifikat" Clicked="BtnPlacering_OnClicked"
+            <Button x:Name="btnPlacering" Text="Certifikat" Clicked="BtnCert_OnClicked"
                     Margin="75, 35, 75, 0"/>
         </StackLayout>
 
