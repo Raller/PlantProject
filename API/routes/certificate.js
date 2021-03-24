@@ -9,7 +9,7 @@ const { cwd } = require('process');
 
 const router = express.Router();
 
-//Get all error data
+//Generate certificate
 router.get('/:plantId', async (req, res) => {
     let temperatures;
     let soilhumidities;

@@ -54,7 +54,7 @@ router.get('/plantid/:plantId', async (req, res) => {
 //Delete error by id
 router.delete('/id/:errorId', async (req, res) => {
     try {
-        const removedError = await Error.deleteOne({_id: req.params.errorId});
+        const removedError = await Error.deleteOne({ _id: req.params.errorId });
         return res.status(200).json(removedError);
     } catch (err) {
         res.json(err);
@@ -64,21 +64,11 @@ router.delete('/id/:errorId', async (req, res) => {
 //Delete errors by plantId
 router.delete('/plantid/:plantId', async (req, res) => {
     try {
-        const removedErrors = await Error.deleteMany({plantId: req.params.plantId});
+        const removedErrors = await Error.deleteMany({ plantId: req.params.plantId });
         return res.status(200).json(removedErrors);
     } catch (err) {
         res.json(err);
     }
 })
-
-//Update plant by id
-/*router.put('/id/:humidityId', async (req, res) => {
-    try {
-        const updatedHumidity = await Airhumidity.findByIdAndUpdate({ _id: req.params.humidityId }, req.body);
-        res.json(updatedHumidity);
-    } catch (err) {
-        res.json(err);
-    }
-})*/
 
 module.exports = router;

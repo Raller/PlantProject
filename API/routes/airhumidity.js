@@ -90,14 +90,4 @@ router.delete('/plantid/:plantId', async (req, res) => {
     }
 })
 
-//Update plant by id
-/*router.put('/id/:humidityId', async (req, res) => {
-    try {
-        const updatedHumidity = await Airhumidity.findByIdAndUpdate({ _id: req.params.humidityId }, req.body);
-        res.json(updatedHumidity);
-    } catch (err) {
-        res.json(err);
-    }
-})*/
-
 module.exports = router;

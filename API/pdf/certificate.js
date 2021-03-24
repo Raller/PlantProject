@@ -1,6 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 
+//Generate certificate pdf
 const createCertificate = (temperatures, soilhumidities, airhumidities) => {
     const doc = new PDFDocument();
     doc.pipe(fs.createWriteStream('certificate.pdf'));

@@ -90,15 +90,4 @@ router.delete('/plantid/:plantId', async (req, res) => {
     }
 })
 
-
-//Update plant by id
-/*router.put('/id/:tempId', async (req, res) => {
-    try {
-        const updatedTemperature = await Temperature.findByIdAndUpdate({ _id: req.params.tempId }, req.body);
-        res.json(updatedTemperature);
-    } catch (err) {
-        res.json(err);
-    }
-})*/
-
 module.exports = router;
